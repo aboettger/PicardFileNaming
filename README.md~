@@ -1,8 +1,0 @@
-PicardFileNaming
-================
-
-picard file naming scripts
-
-* Setze "musicbrainz_albumid" auf "0" oder lösche "musicbrainz_albumid" um ein Album unter "[unknown albums]" zu speichern
-* Setze Compilation auf "1" um ein Ablegen unter "[various artist albums]" zu speichern
-* Löschen von APE-Tags löscht auch die Lautstärkeanpassung durch mp3gain
