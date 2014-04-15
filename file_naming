@@ -1,0 +1,15 @@
+$set(title,$left(%title%,64))
+$set(title,$replace(%title%,...,…))
+$set(album,$replace(%album%,...,…))
+
+$noop(/$matchedtracks() - %totaltracks%)
+$if($eq(%genre%,Children),Kinder,Musik)
+$noop($if($ne($matchedtracks(),%_totalalbumtracks%),/[incomplete albums],))
+$noop($if($ne(%releasetype%,),$if($ne($matchedtracks(),%_totalalbumtracks%),/[incomplete albums],),/[unknown albums]))
+$if($and($ne(%musicbrainz_albumid%,),$ne(%musicbrainz_albumid%,0)),$if($lt($matchedtracks(),%_totalalbumtracks%),/[incomplete albums],),/[unknown albums])
+
+$if($eq(%compilation%,1),
+$noop(Various Artist albums)
+/[various artist albums]/%album% \(%musicbrainz_albumid%\)/$if($gt(%discnumber%,0),%discnumber%,0)-$num(%tracknumber%,2) - %artist% - %title%,
+$noop(Single Artist Albums)
+/-=$upper($left($if2(%albumartistsort%,%albumsort%,%artistsort%,%albumartist%,%artist%, %interpret%), 1))=-/$if2(%albumartist%,%artist%, %interpret%)/%album% \(%musicbrainz_albumid%\)/$if($gt(%discnumber%,0),%discnumber%,0)-$num(%tracknumber%,2) - %artist% - %title%)
